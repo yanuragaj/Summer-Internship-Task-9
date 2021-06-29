@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Task-09</title>
+</head>
+<style>
+    body {
+        background-image: url('/static/2bf5173daf215aa870e856d055733bce.jpeg');
+        background-size: cover;
+    }
+
+    #a {
+
+        top: 0%;
+        border-radius: 70px 40px;
+        background-image: url(/static/133276.jpg);
+        background-size: cover;
+        box-shadow: 5px 5px black;
+        box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
+    }
+
+    #b {
+        position: absolute;
+        top: 0;
+        margin-top: 0;
+        left: 600px;
+        padding-top: 10px;
+        font-size: 40px;
+        font-weight: bold;
+        font-family: fantasy;
+        color: rgb(58, 58, 58);
+        text-shadow: 3px 6px black;
+    }
+
+
+
+    #c {
+        border-radius: 50px 50px;
+        width: 200px;
+        height: 200px;
+        text-align: center;
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    #d {
+        font-family: fantasy;
+        font-weight: bold;
+        font-size: 40px;
+        text-align: center;
+        color: white;
+        text-shadow: 3px 6px rgb(231, 12, 12);
+    }
+
+    #e {
+
+        margin-left: 540px;
+        color: white;
+        text-shadow: 1px 2px rgb(231, 12, 12);
+        font-family: fantasy;
+        font-size: 25px;
+        border-top: 2px solid rgb(255, 0, 0);
+        border-bottom: 2px solid rgb(255, 0, 0);
+        border-left: 12px solid rgb(27, 26, 26);
+        border-right: 12px solid rgb(27, 26, 26);
+        border-radius: 12px 12px;
+        background-color: rgb(27, 26, 26);
+
+    }
+
+    #e:hover {
+        box-shadow: 0 4px 8px 0 rgb(0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0);
+    }
+
+    #f {
+        color: white;
+        text-align: center;
+        font-size: 15px;
+        font-family: fantasy;
+        border-radius: 30px;
+        padding: 8px;
+        border-top: 2px solid rgb(255, 0, 0);
+        border-bottom: 2px solid rgb(255, 0, 0);
+        border-left: 12px solid rgb(27, 26, 26);
+        border-right: 12px solid rgb(27, 26, 26);
+        border-radius: 12px 12px;
+        background-color: rgb(27, 26, 26);
+
+    }
+
+    #f:hover {
+        text-decoration-style: double;
+        text-shadow: 1px 2px rgb(231, 12, 12);
+
+    }
+
+    #h {
+        text-align: center;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        backdrop-filter: blur(5px) saturate(100%) contrast(45%) brightness(130%);
+        margin-left: 200px;
+        margin-right: 200px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+
+    <div id=a>
+        <img width=50px src="/static/Docker.ico">
+        <p id=b>TASK-09</p>
+
+    </div>
+
+    <div>
+
+        <p id=d>Enter Your Query</p>
+    </div>
+    <div>
+        <input id=e name="cmd_input" type="text" />
+    </div>
+    <br>
+    <br>
+    <div style="text-align: center;">
+        <button id=f type="button" onclick="lw()"> CLICK ME </button>
+    </div>
+    <pre id=h>OUTPUT WILL BE DISPLAYED HERE!!!
+          
+
+        </pre>
+    <script>
+
+        function lw() {
+            var i = document.getElementById("e").value;
+
+            if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
+                var image = prompt("Enter Image Name: ")
+                var pname = prompt("Enter Pod Name: ")
+                var query = "minikube kubectl -- run " + pname + " --image=" + image;
+            }
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("create")) || (i.includes("generate")) || (i.includes("build")))) {
+                var image = prompt("Enter Image Name: ")
+                var dname = prompt("Enter Deployment Name: ")
+                var query = "minikube kubectl -- create deployment " + dname + " --image=" + image;
+            }
+
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("expose")) || (i.includes("display")))) {
+                var dname = prompt("Enter Deployment Name To Expose: ")
+                var pno = prompt("Enter Port No: ")
+                var etype = prompt("Enter Expose type:")
+                var query = "minikube kubectl -- expose deployment " + dname + " --type=" + etype + " --port=" + pno
+            }
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("scale")) || (i.includes("increase")) || (i.includes("decrease")) || (i.includes("scale up")) || (i.includes("scale down")))) {
+                var dname = prompt("Enter Deployment Name To Scale-Up/Scale-Down: ")
+                var replica = prompt("Enter Number 0f replicas: ")
+                var query = "minikube kubectl -- scale deployment " + dname + " --replicas=" + replica
+            }
+
+
+            else if (((i.includes("all")) || (i.includes("everything"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("destroy")))) {
+                var query = "minikube kubectl -- delete --all all"
+
+            }
+
+            else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("detach")))) {
+                var pname = prompt("Enter Pod Name To Delete: ")
+                var query = "minikube kubectl -- delete pod " + pname
+            }
+
+            else if (((i.includes("deployments")) || (i.includes("deploy")) || (i.includes("deployment"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("detach")))) {
+                var dname = prompt("Enter Deployment Name To Delete: ")
+                var query = "minikube kubectl -- delete deployment " + dname
+            }
+
+            else if (((i.includes("services")) || (i.includes("services")) || (i.includes("svc"))) && ((i.includes("delete")) || (i.includes("remove")) || (i.includes("destroy")))) {
+                var sname = prompt("Enter SVC Name To Delete: ")
+                var query = "minikube kubectl -- delete svc " + sname
+
+            }
+
+            else if (((i.includes("pods")) || (i.includes("pod"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("list")))) {
+                var query = "minikube kubectl get pods"
+
+            }
+
+
+            else if (((i.includes("deployments")) || (i.includes("deployment")) || (i.includes("deploy"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("list")))) {
+                var query = "minikube kubectl get deploy"
+
+            }
+
+            else if (((i.includes("services")) || (i.includes("services")) || (i.includes("svc"))) && ((i.includes("show")) || (i.includes("get")) || (i.includes("list")))) {
+                var query = "minikube kubectl get svc"
+
+            }
+
+            else if (((i.includes("IP")) || (i.includes("ip")) || (i.includes("Ip"))) && ((i.includes("kubernetes")) || (i.includes("k8s")) || (i.includes("cluster")))) {
+                var query = "minikube ip"
+
+            }
+
+            else if (((i.includes("dashboard")) || (i.includes("Dashboard")) || (i.includes("webui"))) && ((i.includes("kubernetes")) || (i.includes("k8s")) || (i.includes("cluster")))) {
+                var query = "minikube dashboard"
+
+            }
+
+            document.getElementById('e').value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://127.0.0.1:5000/cmd_output?cmd_input=" + query, true);
+            xhr.send();
+            xhr.onload = function () {
+                var output = xhr.responseText;
+                document.getElementById("h").innerHTML = output;
+            };
+
+
+
+        }
+    </script>
+
+</body>
+
+</html>
